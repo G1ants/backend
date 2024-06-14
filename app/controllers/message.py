@@ -3,6 +3,7 @@ import logging
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 
+from app.models.message import MessageRequest
 from app.services.message import MessageService
 
 log = logging.getLogger(__name__)
@@ -19,10 +20,9 @@ class MessageController:
     def setup_routes(self):
         router = self.router
         
-        @router.post("/message")
-        async def start(input) -> JSONResponse:
+        @router.post("/")
+        async def start(input: MessageRequest) -> JSONResponse:
             try:
-                print(input)
                 return JSONResponse(
                     status_code=200,
                     content={"message": "success"}

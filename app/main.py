@@ -16,15 +16,8 @@ app.add_middleware(
 )
 
 
-def get_entry_controller_router():
-    service = EntryService()
-    return EntryController(service=service).router
+def get_message_controller_router():
+    service = MessageService()
+    return MessageController(service=service).router
 
-
-def get_user_controller_router():
-    service = UserService()
-    return UserController(service=service).router
-
-
-app.include_router(get_entry_controller_router(), tags=["entries"], prefix="/api/entry")
-app.include_router(get_user_controller_router(), tags=["user"], prefix="/api/user")
+app.include_router(get_message_controller_router(), tags=["message"], prefix="/api/message")

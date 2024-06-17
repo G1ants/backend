@@ -1,5 +1,5 @@
 # Backend
-The backend infrastructure for G1ants
+The backend infrastructure for Giants
 
 ## Install Poetry
 

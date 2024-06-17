@@ -20,4 +20,5 @@ def get_message_controller_router():
     service = MessageService()
     return MessageController(service=service).router
 
+
 app.include_router(get_message_controller_router(), tags=["message"], prefix="/message")

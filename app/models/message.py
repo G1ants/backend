@@ -6,11 +6,9 @@ class Role(StrEnum):
     USER = "user"
     ASSISTANT = "assistant"
 
-
 class Message(BaseModel):
     role: Role
     content: str
-
 
 class MessageRequest(BaseModel):
     message: str

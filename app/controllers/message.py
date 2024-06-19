@@ -30,7 +30,7 @@ class MessageController:
                 response: MessageResponse = await self.service.infer(
                     input=processed_input
                 )
-                return JSONResponse(status_code=200, content=response)
+                return JSONResponse(status_code=200, content=response.model_dump())
             except Exception as e:
-                log.error(f"Unexpected error in essage controller: {e}")
+                log.error(f"Unexpected error in message controller: {e}")
                 raise HTTPException(status_code=500, detail=str(e)) from e

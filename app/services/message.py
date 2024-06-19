@@ -16,9 +16,12 @@ class MessageService:
 
     def process(self, message_request: MessageRequest) -> ProcessedMessageRequest:
         # TODO: Implement logic to process the message request (if any)
-        return ProcessedMessageRequest.model_validate(
-            message=message_request.message, chat_history=message_request.chat_history
+        processed_message = ProcessedMessageRequest(
+            message=message_request.message, 
+            chat_history=message_request.chat_history,
+            agent=message_request.agent
         )
+        return processed_message
 
     ###
     ### API logic
@@ -34,8 +37,8 @@ class MessageService:
             data_dict = input.model_dump()
 
             async with httpx.AsyncClient(timeout=300.0) as client:
-                response = await client.post(url, json=data_dict)
-                message_response: MessageResponse = MessageResponse.model_validate(
+                response = await client.post(url, json=data_dict)    
+                message_response: MessageResponse = MessageResponse(
                     **response.json()
                 )
                 return message_response

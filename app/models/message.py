@@ -29,3 +29,4 @@ class ProcessedMessageRequest(BaseModel):
 class MessageResponse(BaseModel):
     content: str
     agent: Agent
+    is_rag: bool
